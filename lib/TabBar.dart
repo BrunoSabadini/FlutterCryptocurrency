@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'FirstScreen/WalletAndCryptoLabelsWidget.dart';
-import 'Models/Transactions.dart';
+import 'Transactions.dart';
 import 'l10n/app_localizations.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {

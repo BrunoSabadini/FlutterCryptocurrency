@@ -4,18 +4,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart' as riverpod;
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:work_project/API/repositories/MessariAPI/FetchCoinsModel.dart';
+import 'package:work_project/API/useCases/crypto_listing_use_case.dart';
 import 'package:work_project/StateController.dart';
 import '../FirstScreen/MaterialAppAndProviderInstancesWidget.dart';
 import '../l10n/app_localizations.dart';
-import '../useCases/crypto_listing_use_case.dart';
-import 'MessariAPI/BigDataModel.dart';
 
 class DetailsPageModelWidget extends riverpod.ConsumerStatefulWidget {
-  // String symbol;
-
   const DetailsPageModelWidget({
     Key? key,
-    // required this.symbol,
   }) : super(key: key);
 
   @override
@@ -65,7 +62,6 @@ class DetailsPageModelState
     return chartSpots;
   }
 
-//valuesAndPercentages!.last[4].toDouble();
   currentCoinValue(num coinValue) {
     switch (symbol) {
       case "BTC":
@@ -97,7 +93,6 @@ class DetailsPageModelState
   void callChartData(int nOfSpots, List<dynamic> valuesAndPercentages) {
     setState(() {
       numberOfSpots = nOfSpots;
-      // chartSpots = dateFilter(numberOfSpots, valuesAndPercentages);
       minValue = calculateMinAndMaxValue("min");
       maxValue = calculateMinAndMaxValue("max");
     });

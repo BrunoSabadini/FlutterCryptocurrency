@@ -1,6 +1,7 @@
-import '../Models/MessariAPI/AllAssetsBigDataModel.dart';
-import '../Models/MessariAPI/BigDataModel.dart';
-import '../crypto_listing_endpoint.dart';
+import 'package:work_project/API/repositories/MessariAPI/AllAssetsBigDataModel.dart';
+import 'package:work_project/API/repositories/MessariAPI/BigDataModel.dart';
+
+import 'crypto_listing_endpoint.dart';
 
 class CryptoListingRepository {
   final CryptoListingEndpoint cryptoListingEndpoint;

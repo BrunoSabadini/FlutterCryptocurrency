@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:work_project/Models/MessariAPI/AllAssetsBigDataModel.dart';
+import 'package:work_project/API/repositories/MessariAPI/AllAssetsBigDataModel.dart';
+import 'package:work_project/API/repositories/MessariAPI/BigDataModel.dart';
 
-import '../Models/MessariAPI/BigDataModel.dart';
-import '../crypto_listing_endpoint_provider.dart';
+import '../repositories/crypto_listing_endpoint_provider.dart';
 import '../repositories/crypto_listing_repository.dart';
 
 class GetCryptoListingUseCase {

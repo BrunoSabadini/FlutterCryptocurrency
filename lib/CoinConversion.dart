@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'package:work_project/StateController.dart';
 
-import '../l10n/app_localizations.dart';
+import 'l10n/app_localizations.dart';
 
 class CoinsConversionWidget extends StatefulWidget {
   const CoinsConversionWidget({Key? key}) : super(key: key);
@@ -21,6 +21,7 @@ class CoinsConversionState extends State<CoinsConversionWidget> {
   String textToConversionField = "Montante a ser convertido";
   String textToConvertedField = "Montante após conversão";
   int myIntVar = 0;
+  double percentageVar = 0;
 
   String recieveTypedFieldValues = "";
 
@@ -43,32 +44,32 @@ class CoinsConversionState extends State<CoinsConversionWidget> {
 
     if (selectWichCoinConvert == 'Bitcoin') {
       currentValueConvertedCoin =
-          Provider.of<StoreStateController>(context, listen: true)
+          Provider.of<StoreStateController>(context, listen: false)
               .bitcoinCurrentValue;
     }
     if (selectWichCoinConvert == 'Ethereum') {
       currentValueConvertedCoin =
-          Provider.of<StoreStateController>(context, listen: true)
+          Provider.of<StoreStateController>(context, listen: false)
               .ethereumCurrentValue;
     }
     if (selectWichCoinConvert == 'Litecoin') {
       currentValueConvertedCoin =
-          Provider.of<StoreStateController>(context, listen: true)
+          Provider.of<StoreStateController>(context, listen: false)
               .litecoinCurrentValue;
     }
     if (selectToWichCoinConvert == 'Bitcoin') {
       currentValueConvertedToCoin =
-          Provider.of<StoreStateController>(context, listen: true)
+          Provider.of<StoreStateController>(context, listen: false)
               .bitcoinCurrentValue;
     }
     if (selectToWichCoinConvert == 'Ethereum') {
       currentValueConvertedToCoin =
-          Provider.of<StoreStateController>(context, listen: true)
+          Provider.of<StoreStateController>(context, listen: false)
               .ethereumCurrentValue;
     }
     if (selectToWichCoinConvert == 'Litecoin') {
       currentValueConvertedToCoin =
-          Provider.of<StoreStateController>(context, listen: true)
+          Provider.of<StoreStateController>(context, listen: false)
               .litecoinCurrentValue;
     }
     resultAfterConversion =
@@ -90,7 +91,7 @@ class CoinsConversionState extends State<CoinsConversionWidget> {
   }
 
   Widget percetageToConvertCoin(double percentage) {
-    Provider.of<StoreStateController>(context, listen: true)
+    Provider.of<StoreStateController>(context, listen: false)
         .pickWhichCoinConvert = selectWichCoinConvert;
 
     return Center(
@@ -99,23 +100,24 @@ class CoinsConversionState extends State<CoinsConversionWidget> {
             child: Material(
                 child: InkWell(
                     onTap: () {
-                      Provider.of<StoreStateController>(context, listen: true)
+                      Provider.of<StoreStateController>(context, listen: false)
                           .percentageToConvert = percentage;
                       receiveCoinAmountAccordingToPercentage =
                           Provider.of<StoreStateController>(context,
-                                  listen: true)
+                                  listen: false)
                               .coinAmountConversionAccordingToPercentage();
                       setState(() {
                         textToConversionField =
                             Provider.of<StoreStateController>(context,
-                                    listen: true)
+                                    listen: false)
                                 .numberFormatConversion(
                                     receiveCoinAmountAccordingToPercentage);
                       });
                       textToConvertedField = Provider.of<StoreStateController>(
                               context,
-                              listen: true)
+                              listen: false)
                           .numberFormatConversion(convertCoin());
+                      percentageVar = percentage;
                     },
                     child: Container(
                         child: Text(
@@ -142,6 +144,25 @@ class CoinsConversionState extends State<CoinsConversionWidget> {
             color: Colors.black));
   }
 
+  refreshAmountAccordingToCoinItemSelection(String? newValue) {
+    setState(() {
+      selectWichCoinConvert = newValue!;
+      Provider.of<StoreStateController>(context, listen: false)
+          .percentageToConvert = percentageVar;
+      receiveCoinAmountAccordingToPercentage =
+          Provider.of<StoreStateController>(context, listen: false)
+              .coinAmountConversionAccordingToPercentage();
+      setState(() {
+        textToConversionField =
+            Provider.of<StoreStateController>(context, listen: false)
+                .numberFormatConversion(receiveCoinAmountAccordingToPercentage);
+      });
+      textToConvertedField =
+          Provider.of<StoreStateController>(context, listen: false)
+              .numberFormatConversion(convertCoin());
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -166,9 +187,7 @@ class CoinsConversionState extends State<CoinsConversionWidget> {
               );
             }).toList(),
             onChanged: (String? newValue) {
-              setState(() {
-                selectWichCoinConvert = newValue!;
-              });
+              refreshAmountAccordingToCoinItemSelection(newValue);
             },
           )),
       conversionField(textToConversionField),
@@ -196,9 +215,7 @@ class CoinsConversionState extends State<CoinsConversionWidget> {
               );
             }).toList(),
             onChanged: (String? newValue) {
-              setState(() {
-                selectToWichCoinConvert = newValue!;
-              });
+              refreshAmountAccordingToCoinItemSelection(newValue);
             },
           )),
       conversionField(textToConvertedField),
@@ -211,7 +228,7 @@ class CoinsConversionState extends State<CoinsConversionWidget> {
                       backgroundButtonColor:
                           const Color.fromARGB(255, 255, 255, 255),
                       textButtonColor: const Color.fromARGB(255, 221, 48, 85),
-                      routeNavigator: '/bitcoin')),
+                      routeNavigator: '/')),
           const Spacer(),
           Expanded(
               child: Provider.of<StoreStateController>(context, listen: true)
