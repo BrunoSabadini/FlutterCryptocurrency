@@ -1,9 +1,15 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:work_project/API/repositories/MessariAPI/AllAssetsBigDataModel.dart';
-import 'package:work_project/API/repositories/MessariAPI/BigDataModel.dart';
-import 'package:work_project/API/repositories/crypto_listing_repository_provider.dart';
+import 'package:work_project/API/repositories/MessariAPI/DetailsPage/BigDataModel.dart';
+import 'package:work_project/API/repositories/MessariAPI/WalletPage/AllAssetsBigDataModel.dart';
+import 'endPointAndRepository.dart';
+import 'package:dio/dio.dart';
 
-import '../repositories/crypto_listing_repository.dart';
+final endPointMessariAPI = Provider((ref) {
+  final dio = Dio(BaseOptions(
+    baseUrl: 'https://data.messari.io/api',
+  ));
+  return CryptosEndPoint(dio);
+});
 
 class GetCryptoListingUseCase {
   final CryptosRepository repository;

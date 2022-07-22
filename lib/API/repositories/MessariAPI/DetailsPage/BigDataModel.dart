@@ -1,4 +1,4 @@
-import 'package:work_project/API/repositories/MessariAPI/StatusModel.dart';
+import 'package:work_project/API/repositories/MessariAPI/DetailsPage/StatusModel.dart';
 
 class BigDataModel {
   final StatusModel statusModel;

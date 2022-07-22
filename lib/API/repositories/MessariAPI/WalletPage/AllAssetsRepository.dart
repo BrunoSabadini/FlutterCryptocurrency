@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'AllAssetsBigDataModel.dart';
+import 'package:work_project/API/repositories/MessariAPI/WalletPage/AllAssetsBigDataModel.dart';
 
 class AllAssetsRepository {
   static String mainUrl = "https://data.messari.io/api";

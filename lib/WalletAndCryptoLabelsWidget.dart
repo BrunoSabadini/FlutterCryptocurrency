@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' as riverpod;
 import 'package:provider/provider.dart';
-import 'package:work_project/API/useCases/crypto_listing_use_case.dart';
+import 'package:work_project/API/repositories/cryptoUseCases.dart';
 import 'package:work_project/StateController.dart';
 import '../l10n/app_localizations.dart';
 
@@ -159,6 +159,50 @@ class WalletAndCryptoLabelsState
               ])
             ]),
         error: (Object error, StackTrace? stackTrace) => const Text('Erro'),
-        loading: () => const CircularProgressIndicator());
+        loading: () => animation);
+  }
+}
+
+const animation = LoadingAnimationWidget();
+
+class LoadingAnimationWidget extends StatefulWidget {
+  const LoadingAnimationWidget({Key? key}) : super(key: key);
+
+  @override
+  State<LoadingAnimationWidget> createState() => LoadingAnimationState();
+}
+
+class LoadingAnimationState extends State<LoadingAnimationWidget>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    duration: const Duration(seconds: 2),
+    vsync: this,
+  )..repeat(reverse: true);
+  late final Animation<Offset> _offsetAnimation = Tween<Offset>(
+    begin: Offset.zero,
+    end: const Offset(1.5, 0.0),
+  ).animate(CurvedAnimation(
+    parent: _controller,
+    curve: Curves.elasticIn,
+  ));
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SlideTransition(
+        position: _offsetAnimation,
+        child: const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: ImageIcon(
+            AssetImage("lib/icon/warren.png"),
+            color: Color.fromARGB(255, 254, 4, 4),
+            size: 150,
+          ),
+        ));
   }
 }

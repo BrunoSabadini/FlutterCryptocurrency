@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'BigDataModel.dart';
+import 'package:work_project/API/repositories/MessariAPI/DetailsPage/BigDataModel.dart';
 
 class Repository {
   String endPoint;
