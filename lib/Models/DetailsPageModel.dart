@@ -7,7 +7,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:work_project/API/repositories/MessariAPI/FetchCoinsModel.dart';
 import 'package:work_project/API/useCases/crypto_listing_use_case.dart';
 import 'package:work_project/StateController.dart';
-import '../FirstScreen/MaterialAppAndProviderInstancesWidget.dart';
+import '../MaterialAppAndProviderInstancesWidget.dart';
 import '../l10n/app_localizations.dart';
 
 class DetailsPageModelWidget extends riverpod.ConsumerStatefulWidget {
@@ -177,7 +177,7 @@ class DetailsPageModelState
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
     symbol = args.symbol;
-    final getCryptoListingProvider = ref.watch(chartsListingProvider(symbol));
+    final getCryptoListingProvider = ref.watch(detailsPageProvider(symbol));
     return getCryptoListingProvider.when(
         data: (data) => Scaffold(
             appBar: AppBar(

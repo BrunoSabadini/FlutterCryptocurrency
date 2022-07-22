@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'FirstScreen/WalletAndCryptoLabelsWidget.dart';
+import 'WalletAndCryptoLabelsWidget.dart';
 import 'Transactions.dart';
 import 'l10n/app_localizations.dart';
 
@@ -38,9 +38,8 @@ class TabBarState extends State<BottomNavigationBarWidget> {
         selectedItemColor: const Color.fromARGB(255, 3, 0, 0),
         items: <BottomNavigationBarItem>[
           const BottomNavigationBarItem(
-            icon: Icon(Icons.card_travel),
-            // ImageIcon(AssetImage("lib/Icon/warren.png"),
-            //     color: Color.fromARGB(255, 254, 4, 4)),
+            icon: ImageIcon(AssetImage("lib/icon/warren.png"),
+                color: Color.fromARGB(255, 254, 4, 4)),
             label: 'Home',
           ),
           BottomNavigationBarItem(

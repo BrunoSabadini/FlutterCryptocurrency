@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart' as riverpod;
 import 'package:provider/provider.dart';
 import 'package:work_project/API/useCases/crypto_listing_use_case.dart';
 import 'package:work_project/StateController.dart';
-import '../../l10n/app_localizations.dart';
+import '../l10n/app_localizations.dart';
 
-import '../TabBar.dart';
+import 'TabBar.dart';
 
 import 'MaterialAppAndProviderInstancesWidget.dart';
 
@@ -142,7 +142,7 @@ class WalletAndCryptoLabelsState
 
   @override
   Widget build(BuildContext context) {
-    final getCryptoListingProvider = ref.watch(cryptoListingProvider);
+    final getCryptoListingProvider = ref.watch(walletPageProvider);
     return getCryptoListingProvider.when(
         data: (data) => Stack(children: <Widget>[
               ListView(children: [

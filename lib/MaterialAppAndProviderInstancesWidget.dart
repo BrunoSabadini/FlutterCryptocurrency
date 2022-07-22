@@ -6,8 +6,8 @@ import 'package:work_project/Models/DetailsPageModel.dart';
 import 'package:work_project/TabBar.dart';
 import 'package:work_project/l10n/app_localizations.dart';
 
-import '../../StateController.dart';
-import '../CoinConversion.dart';
+import '../StateController.dart';
+import 'CoinConversion.dart';
 
 class MaterialAppAndProviderInstancesWidget extends StatefulWidget {
   const MaterialAppAndProviderInstancesWidget({Key? key}) : super(key: key);
