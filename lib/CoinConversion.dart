@@ -208,11 +208,12 @@ class CoinsConversionState extends State<CoinsConversionWidget> {
             alignment: Alignment.center,
             value: selectToWichCoinConvert,
             icon: const Icon(Icons.keyboard_arrow_down),
-            items: items2.map((String items) {
+            items: items2.map((String items2) {
               return DropdownMenuItem(
-                value: items,
-                child: Text(items),
-              );
+                  value: items2,
+                  child: Text(
+                    items2,
+                  ));
             }).toList(),
             onChanged: (String? newValue) {
               refreshAmountAccordingToCoinItemSelection(newValue);
