@@ -47,9 +47,7 @@ class WalletAndCryptoLabelsState
           Row(
             children: [
               Expanded(
-                  child: Text(
-                      AppLocalizations.of(context)!
-                          .wallet, // Deixei "Carteira" mesmo em inglês porque ele reconhece que estou usando inglês
+                  child: Text(AppLocalizations.of(context)!.wallet,
                       style: const TextStyle(
                           fontSize: 29, fontWeight: FontWeight.bold))),
               IconButton(
@@ -144,65 +142,24 @@ class WalletAndCryptoLabelsState
   Widget build(BuildContext context) {
     final getCryptoListingProvider = ref.watch(walletPageProvider);
     return getCryptoListingProvider.when(
-        data: (data) => Stack(children: <Widget>[
+        data: (allAssetsBigDataModel) => Stack(children: <Widget>[
               ListView(children: [
                 walletAmountWidget(),
-                ...data.dataModel.map((coinsData) => Tooltip(
-                    message: "Go to ${coinsData.symbol} details",
-                    child: coinsLabel(
-                      coinsData.slug,
-                      coinsData.name,
-                      coinsData.metrics["market_data"]
-                          ["percent_change_eth_last_24_hours"],
-                      coinsData.symbol,
-                    )))
+                ...allAssetsBigDataModel.dataModel.map(
+                    (allAssetsBigDataModel) => Tooltip(
+                        message:
+                            "Go to ${allAssetsBigDataModel.symbol} details",
+                        child: coinsLabel(
+                          allAssetsBigDataModel.slug,
+                          allAssetsBigDataModel.name,
+                          allAssetsBigDataModel.metrics["market_data"]
+                              ["percent_change_eth_last_24_hours"],
+                          allAssetsBigDataModel.symbol,
+                        )))
               ])
             ]),
         error: (Object error, StackTrace? stackTrace) => const Text('Erro'),
-        loading: () => animation);
-  }
-}
-
-const animation = LoadingAnimationWidget();
-
-class LoadingAnimationWidget extends StatefulWidget {
-  const LoadingAnimationWidget({Key? key}) : super(key: key);
-
-  @override
-  State<LoadingAnimationWidget> createState() => LoadingAnimationState();
-}
-
-class LoadingAnimationState extends State<LoadingAnimationWidget>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(
-    duration: const Duration(seconds: 2),
-    vsync: this,
-  )..repeat(reverse: true);
-  late final Animation<Offset> _offsetAnimation = Tween<Offset>(
-    begin: Offset.zero,
-    end: const Offset(1.5, 0.0),
-  ).animate(CurvedAnimation(
-    parent: _controller,
-    curve: Curves.elasticIn,
-  ));
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SlideTransition(
-        position: _offsetAnimation,
-        child: const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: ImageIcon(
-            AssetImage("lib/icon/warren.png"),
-            color: Color.fromARGB(255, 254, 4, 4),
-            size: 150,
-          ),
-        ));
+        loading: () => Provider.of<StoreStateController>(context, listen: false)
+            .animation);
   }
 }

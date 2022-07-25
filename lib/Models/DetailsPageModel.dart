@@ -328,7 +328,8 @@ class DetailsPageModelState
                       routeNavigator: 'coinConversion'),
             ])),
         error: (Object error, StackTrace? stackTrace) => const Text('Erro'),
-        loading: () => const CircularProgressIndicator());
+        loading: () => Provider.of<StoreStateController>(context, listen: false)
+            .animation);
   }
 }
 

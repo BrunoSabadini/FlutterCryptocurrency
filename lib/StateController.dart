@@ -17,6 +17,7 @@ class StoreStateController extends ChangeNotifier {
   String pickWhichCoinConvert = "";
   double percentageToConvert = 0;
   double wichCoinAmount = 0;
+  final animation = const LoadingAnimationWidget();
 
   double walletAmount() {
     return bitcoinAmount + litecoinAmount + ethereumAmount;
@@ -54,7 +55,6 @@ class StoreStateController extends ChangeNotifier {
     if (pickWhichCoinConvert == 'Litecoin') {
       return litecoinAmount;
     } else {
-      // ignore: avoid_print
       return print("Correct the coin conversion");
     }
   }
@@ -181,5 +181,47 @@ class StoreStateController extends ChangeNotifier {
     } else {
       return "";
     }
+  }
+}
+
+class LoadingAnimationWidget extends StatefulWidget {
+  const LoadingAnimationWidget({Key? key}) : super(key: key);
+
+  @override
+  State<LoadingAnimationWidget> createState() => LoadingAnimationState();
+}
+
+class LoadingAnimationState extends State<LoadingAnimationWidget>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    duration: const Duration(seconds: 2),
+    vsync: this,
+  )..repeat(reverse: true);
+  late final Animation<Offset> _offsetAnimation = Tween<Offset>(
+    begin: Offset.zero,
+    end: const Offset(1.5, 0.0),
+  ).animate(CurvedAnimation(
+    parent: _controller,
+    curve: Curves.elasticIn,
+  ));
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SlideTransition(
+        position: _offsetAnimation,
+        child: const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: ImageIcon(
+            AssetImage("lib/icon/warren.png"),
+            color: Color.fromARGB(255, 254, 4, 4),
+            size: 150,
+          ),
+        ));
   }
 }
