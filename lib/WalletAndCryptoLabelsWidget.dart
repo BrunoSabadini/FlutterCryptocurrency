@@ -141,12 +141,17 @@ class WalletAndCryptoLabelsState
   @override
   Widget build(BuildContext context) {
     final getCryptoListingProvider = ref.watch(walletPageProvider);
+
     return getCryptoListingProvider.when(
         data: (allAssetsBigDataModel) => Stack(children: <Widget>[
               ListView(children: [
                 walletAmountWidget(),
-                ...allAssetsBigDataModel.dataModel.map(
-                    (allAssetsBigDataModel) => Tooltip(
+                ...allAssetsBigDataModel.dataModel
+                    .where((element) =>
+                        element.symbol == 'BTC' ||
+                        element.symbol == 'ETH' ||
+                        element.symbol == 'LTC')
+                    .map((allAssetsBigDataModel) => Tooltip(
                         message:
                             "Go to ${allAssetsBigDataModel.symbol} details",
                         child: coinsLabel(
