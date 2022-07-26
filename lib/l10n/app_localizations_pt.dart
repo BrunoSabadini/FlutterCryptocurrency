@@ -11,6 +11,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get wallet => 'Carteira';
 
   @override
+  String get details => 'Detalhes';
+
+  @override
   String get informations => 'Informações';
 
   @override

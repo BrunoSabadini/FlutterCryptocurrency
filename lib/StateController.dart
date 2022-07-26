@@ -16,7 +16,6 @@ class StoreStateController extends ChangeNotifier {
   double ethereumAmount = 30000.00;
   String pickWhichCoinConvert = "";
   double percentageToConvert = 0;
-  double wichCoinAmount = 0;
   final animation = const LoadingAnimationWidget();
 
   double walletAmount() {

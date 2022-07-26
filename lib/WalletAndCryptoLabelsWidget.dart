@@ -21,22 +21,6 @@ class WalletAndCryptoLabelsWidget extends riverpod.ConsumerStatefulWidget {
 
 class WalletAndCryptoLabelsState
     extends riverpod.ConsumerState<WalletAndCryptoLabelsWidget> {
-  double wichCoinAmount(String symbol) {
-    switch (symbol) {
-      case "BTC":
-        return Provider.of<StoreStateController>(context, listen: true)
-            .ethereumAmount;
-      case "ETH":
-        return Provider.of<StoreStateController>(context, listen: true)
-            .ethereumAmount;
-      case "LTC":
-        return Provider.of<StoreStateController>(context, listen: true)
-            .litecoinAmount;
-      default:
-        return 0.010101010101;
-    }
-  }
-
   Widget walletAmountWidget() {
     return Container(
       margin: const EdgeInsets.fromLTRB(25, 40, 25, 0),
@@ -101,6 +85,22 @@ class WalletAndCryptoLabelsState
   }
 
   Widget coinsLabel(String slug, String name, double marketCap, String symbol) {
+    double wichCoinAmount() {
+      switch (symbol) {
+        case "BTC":
+          return Provider.of<StoreStateController>(context, listen: true)
+              .bitcoinAmount;
+        case "ETH":
+          return Provider.of<StoreStateController>(context, listen: true)
+              .ethereumAmount;
+        case "LTC":
+          return Provider.of<StoreStateController>(context, listen: true)
+              .litecoinAmount;
+        default:
+          return 0;
+      }
+    }
+
     return Card(
       child: InkWell(
         onTap: () {
@@ -124,13 +124,12 @@ class WalletAndCryptoLabelsState
           subtitle: Text(name),
           trailing: Column(children: [
             Text(Provider.of<StoreStateController>(context, listen: true)
-                .amountFunc(wichCoinAmount(symbol))),
+                .amountFunc(wichCoinAmount())),
             (Provider.of<StoreStateController>(context, listen: true)
                 .greenOrRedBackground(
                     text: marketCap.toStringAsFixed(2),
                     backgroundColorVerification: marketCap))
           ]),
-          isThreeLine: true,
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
         ),

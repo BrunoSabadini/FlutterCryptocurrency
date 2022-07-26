@@ -107,6 +107,12 @@ abstract class AppLocalizations {
   /// **'Carteira'**
   String get wallet;
 
+  /// No description provided for @details.
+  ///
+  /// In pt, this message translates to:
+  /// **'Detalhes'**
+  String get details;
+
   /// No description provided for @informations.
   ///
   /// In pt, this message translates to:

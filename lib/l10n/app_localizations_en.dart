@@ -8,10 +8,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get language => 'English';
 
   @override
-  String get wallet => 'wallet';
+  String get wallet => 'Wallet';
 
   @override
-  String get informations => 'informations';
+  String get details => 'Details';
+
+  @override
+  String get informations => 'Informations';
 
   @override
   String get transactions => 'Transactions';
@@ -20,44 +23,44 @@ class AppLocalizationsEn extends AppLocalizations {
   String get wallets => 'Wallets';
 
   @override
-  String get actualvalue => 'Valor Atual';
+  String get actualvalue => 'Actual Value';
 
   @override
-  String get marketcap => 'market cap';
+  String get marketcap => 'Marketcap';
 
   @override
-  String get minimumvalue => 'minimum value';
+  String get minimumvalue => 'Minimum value';
 
   @override
-  String get maximumvalue => 'maximum value';
+  String get maximumvalue => 'Maximum value';
 
   @override
-  String get convertcoin => 'convert coin';
+  String get convertcoin => 'Convert coin';
 
   @override
-  String get coin => 'coin';
+  String get coin => 'Coin';
 
   @override
-  String get coinconversion => 'coin conversion';
+  String get coinconversion => 'Coin conversion';
 
   @override
-  String get amounttobeconverted => 'amount to be converted';
+  String get amounttobeconverted => 'Amount to be converted';
 
   @override
-  String get amountafterconversion => 'amount after conversion';
+  String get amountafterconversion => 'Amount after conversion';
 
   @override
-  String get toreceivein => 'to receive in:';
+  String get toreceivein => 'To receive in:';
 
   @override
-  String get sucessfulycoinconversioncompleted => 'sucessfuly coin conversion completed';
+  String get sucessfulycoinconversioncompleted => 'Sucessfuly coin conversion completed';
 
   @override
-  String get completedconversion => 'completed conversion';
+  String get completedconversion => 'Completed conversion';
 
   @override
-  String get confirm => 'confirm';
+  String get confirm => 'Confirm';
 
   @override
-  String get cancel => 'cancel';
+  String get cancel => 'Cancel';
 }

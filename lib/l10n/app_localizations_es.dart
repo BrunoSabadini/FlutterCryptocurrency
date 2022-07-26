@@ -11,6 +11,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get wallet => 'Cartera';
 
   @override
+  String get details => 'Detalhes';
+
+  @override
   String get informations => 'Información';
 
   @override

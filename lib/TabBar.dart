@@ -15,10 +15,10 @@ class TabBarState extends State<BottomNavigationBarWidget> {
   int _selectedIndex = 0;
 
   static final List<Widget> _widgetOptions = <Widget>[
-    const WalletAndCryptoLabelsWidget(),
     const Text(
       'Home',
     ),
+    const WalletAndCryptoLabelsWidget(),
     const TransactionsWidget(),
   ];
 

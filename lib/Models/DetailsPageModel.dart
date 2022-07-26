@@ -192,17 +192,17 @@ class DetailsPageModelState
                 ),
                 toolbarOpacity: 0.5,
                 backgroundColor: const Color.fromARGB(193, 255, 255, 255),
-                title: const SizedBox(
+                title: SizedBox(
                   width: double.infinity,
-                  child: Text('Detalhes',
+                  child: Text(AppLocalizations.of(context)!.details,
                       textAlign: TextAlign.left,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.black)),
                 )),
             body: ListView(children: <Widget>[
-              Text("Moeda" " " + (data.name ?? ""),
+              Text(AppLocalizations.of(context)!.coin + " " + (data.name ?? ""),
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       fontSize: 24,
@@ -296,10 +296,10 @@ class DetailsPageModelState
                   ],
                 ),
               ),
-              const Padding(
-                  padding: EdgeInsets.fromLTRB(20, 0, 0, 15),
-                  child: Text("Informações",
-                      style: TextStyle(
+              Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 0, 15),
+                  child: Text(AppLocalizations.of(context)!.informations,
+                      style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: Colors.black))),
@@ -324,10 +324,12 @@ class DetailsPageModelState
                   .listTile(
                       AppLocalizations.of(context)!.maximumvalue, maxValue),
               Provider.of<StoreStateController>(context, listen: false)
-                  .elevatedButton(context, "Converter moeda",
+                  .elevatedButton(
+                      context, AppLocalizations.of(context)!.coinconversion,
                       routeNavigator: 'coinConversion'),
             ])),
-        error: (Object error, StackTrace? stackTrace) => const Text('Erro'),
+        error: (Object error, StackTrace? stackTrace) =>
+            const Text('API Request Failed'),
         loading: () => Provider.of<StoreStateController>(context, listen: false)
             .animation);
   }
