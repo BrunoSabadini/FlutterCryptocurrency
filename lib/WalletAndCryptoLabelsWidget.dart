@@ -5,7 +5,7 @@ import 'package:work_project/API/repositories/cryptoUseCases.dart';
 import 'package:work_project/StateController.dart';
 import '../l10n/app_localizations.dart';
 
-import 'TabBar.dart';
+import 'BottomNavigationBar.dart';
 
 import 'MaterialAppAndProviderInstancesWidget.dart';
 

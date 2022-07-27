@@ -3,7 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:work_project/CompletedConversionScreen.dart';
 import 'package:work_project/Models/DetailsPageModel.dart';
-import 'package:work_project/TabBar.dart';
+import 'package:work_project/BottomNavigationBar.dart';
 import 'package:work_project/l10n/app_localizations.dart';
 
 import '../StateController.dart';
