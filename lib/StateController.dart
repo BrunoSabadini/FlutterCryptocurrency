@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' as intl;
 
-class StoreStateController extends ChangeNotifier {
+class StoreSharedStateControllers extends ChangeNotifier {
   IconData eyeShow = Icons.visibility_rounded;
   IconData eyeHide = Icons.visibility_off_rounded;
   bool showHide = false;

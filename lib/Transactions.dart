@@ -16,10 +16,10 @@ class TransactionsState extends State<TransactionsWidget> {
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                     color: Colors.black))),
-        Provider.of<StoreStateController>(context, listen: true).listTile(
-            "ETH", 2000,
-            icon: const Icon(Icons.currency_exchange_outlined),
-            subtitle: const Text("31/12/2022")),
+        Provider.of<StoreSharedStateControllers>(context, listen: true)
+            .listTile("ETH", 2000,
+                icon: const Icon(Icons.currency_exchange_outlined),
+                subtitle: const Text("31/12/2022")),
       ])
     ]));
   }

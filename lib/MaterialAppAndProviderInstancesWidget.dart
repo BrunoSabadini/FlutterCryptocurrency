@@ -32,15 +32,15 @@ class MaterialAppAndProviderInstancesState
         initialRoute: '/',
         routes: {
           '/': (context) => ChangeNotifierProvider(
-                create: (context) => StoreStateController(),
+                create: (context) => StoreSharedStateControllers(),
                 child: const BottomNavigationBarWidget(),
               ),
           BottomNavigationBarWidget.selectedCriptoScreen: (context) =>
               ChangeNotifierProvider(
-                  create: (context) => StoreStateController(),
+                  create: (context) => StoreSharedStateControllers(),
                   child: const DetailsPageModelWidget()),
           'coinConversion': (context) => ChangeNotifierProvider(
-              create: (context) => StoreStateController(),
+              create: (context) => StoreSharedStateControllers(),
               child: const CoinsConversionWidget()),
           '/completedConversion': (context) => const CompletedConversionScreen()
         });

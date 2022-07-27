@@ -118,7 +118,8 @@ class DetailsPageModelState
                       width: 100,
                       child: SfCartesianChart(
                           title: ChartTitle(
-                              text: Provider.of<StoreStateController>(context,
+                              text: Provider.of<StoreSharedStateControllers>(
+                                      context,
                                       listen: true)
                                   .numberFormatConversion(
                                       currentCoinValue(coinValue))),
@@ -221,13 +222,14 @@ class DetailsPageModelState
                                 width: 100,
                                 child: SfCartesianChart(
                                     title: ChartTitle(
-                                        text: Provider.of<StoreStateController>(
-                                                context,
-                                                listen: true)
-                                            .numberFormatConversion(
-                                                currentCoinValue(data
-                                                    .values.last[4]
-                                                    .toDouble()))),
+                                        text:
+                                            Provider.of<StoreSharedStateControllers>(
+                                                    context,
+                                                    listen: true)
+                                                .numberFormatConversion(
+                                                    currentCoinValue(data
+                                                        .values.last[4]
+                                                        .toDouble()))),
                                     backgroundColor:
                                         const Color.fromARGB(94, 224, 219, 219),
                                     primaryXAxis: DateTimeAxis(
@@ -236,8 +238,7 @@ class DetailsPageModelState
                                             const MajorGridLines(width: 0),
                                         edgeLabelPlacement:
                                             EdgeLabelPlacement.shift,
-                                        intervalType:
-                                            DateTimeIntervalType.days),
+                                        intervalType: DateTimeIntervalType.days),
                                     series: (changeChartType)
                                         ? <ChartSeries<ChartSampleData, DateTime>>[
                                             LineSeries<ChartSampleData,
@@ -308,30 +309,32 @@ class DetailsPageModelState
                     border: Border(
                         top: BorderSide(
                             width: 1.1, color: Color.fromARGB(60, 0, 0, 0)))),
-                child: Provider.of<StoreStateController>(context, listen: false)
+                child: Provider.of<StoreSharedStateControllers>(context,
+                        listen: false)
                     .listTile((name ?? ""),
                         currentCoinValue(data.values.last[4].toDouble()),
                         subtitle:
                             Text(AppLocalizations.of(context)!.actualvalue)),
               ),
-              Provider.of<StoreStateController>(context, listen: false)
+              Provider.of<StoreSharedStateControllers>(context, listen: false)
                   .listTile(AppLocalizations.of(context)!.marketcap, 10,
                       backgroundColorVerification: 10, whatStringReturn: ""),
-              Provider.of<StoreStateController>(context, listen: false)
+              Provider.of<StoreSharedStateControllers>(context, listen: false)
                   .listTile(
                       AppLocalizations.of(context)!.minimumvalue, minValue),
-              Provider.of<StoreStateController>(context, listen: false)
+              Provider.of<StoreSharedStateControllers>(context, listen: false)
                   .listTile(
                       AppLocalizations.of(context)!.maximumvalue, maxValue),
-              Provider.of<StoreStateController>(context, listen: false)
+              Provider.of<StoreSharedStateControllers>(context, listen: false)
                   .elevatedButton(
                       context, AppLocalizations.of(context)!.coinconversion,
                       routeNavigator: 'coinConversion'),
             ])),
         error: (Object error, StackTrace? stackTrace) =>
             const Text('API Request Failed'),
-        loading: () => Provider.of<StoreStateController>(context, listen: false)
-            .animation);
+        loading: () =>
+            Provider.of<StoreSharedStateControllers>(context, listen: false)
+                .animation);
   }
 }
 

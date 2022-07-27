@@ -35,13 +35,13 @@ class WalletAndCryptoLabelsState
                       style: const TextStyle(
                           fontSize: 29, fontWeight: FontWeight.bold))),
               IconButton(
-                icon: Icon(
-                    Provider.of<StoreStateController>(context, listen: true)
-                        .eyefunc()),
+                icon: Icon(Provider.of<StoreSharedStateControllers>(context,
+                        listen: true)
+                    .eyefunc()),
                 tooltip: 'HideWalletAmount',
-                onPressed:
-                    Provider.of<StoreStateController>(context, listen: true)
-                        .switchShowHide,
+                onPressed: Provider.of<StoreSharedStateControllers>(context,
+                        listen: true)
+                    .switchShowHide,
               ),
             ],
           ),
@@ -49,8 +49,10 @@ class WalletAndCryptoLabelsState
           Row(children: [
             Expanded(
                 child: Text(
-                    Provider.of<StoreStateController>(context, listen: true)
-                        .amountFunc(Provider.of<StoreStateController>(context,
+                    Provider.of<StoreSharedStateControllers>(context,
+                            listen: true)
+                        .amountFunc(Provider.of<StoreSharedStateControllers>(
+                                context,
                                 listen: true)
                             .walletAmount()),
                     textAlign: TextAlign.left,
@@ -69,10 +71,11 @@ class WalletAndCryptoLabelsState
             children: [
               Expanded(
                   child: Text(
-                      Provider.of<StoreStateController>(context, listen: true)
+                      Provider.of<StoreSharedStateControllers>(context,
+                                  listen: true)
                               .profitFunc() +
                           " " +
-                          Provider.of<StoreStateController>(context,
+                          Provider.of<StoreSharedStateControllers>(context,
                                   listen: true)
                               .remunerationFunc(),
                       textAlign: TextAlign.left,
@@ -88,13 +91,13 @@ class WalletAndCryptoLabelsState
     double wichCoinAmount() {
       switch (symbol) {
         case "BTC":
-          return Provider.of<StoreStateController>(context, listen: true)
+          return Provider.of<StoreSharedStateControllers>(context, listen: true)
               .bitcoinAmount;
         case "ETH":
-          return Provider.of<StoreStateController>(context, listen: true)
+          return Provider.of<StoreSharedStateControllers>(context, listen: true)
               .ethereumAmount;
         case "LTC":
-          return Provider.of<StoreStateController>(context, listen: true)
+          return Provider.of<StoreSharedStateControllers>(context, listen: true)
               .litecoinAmount;
         default:
           return 0;
@@ -123,9 +126,9 @@ class WalletAndCryptoLabelsState
           title: Text(symbol),
           subtitle: Text(name),
           trailing: Column(children: [
-            Text(Provider.of<StoreStateController>(context, listen: true)
+            Text(Provider.of<StoreSharedStateControllers>(context, listen: true)
                 .amountFunc(wichCoinAmount())),
-            (Provider.of<StoreStateController>(context, listen: true)
+            (Provider.of<StoreSharedStateControllers>(context, listen: true)
                 .greenOrRedBackground(
                     text: marketCap.toStringAsFixed(2),
                     backgroundColorVerification: marketCap))
@@ -163,7 +166,8 @@ class WalletAndCryptoLabelsState
               ])
             ]),
         error: (Object error, StackTrace? stackTrace) => const Text('Erro'),
-        loading: () => Provider.of<StoreStateController>(context, listen: false)
-            .animation);
+        loading: () =>
+            Provider.of<StoreSharedStateControllers>(context, listen: false)
+                .animation);
   }
 }

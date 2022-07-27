@@ -44,32 +44,32 @@ class CoinsConversionState extends State<CoinsConversionWidget> {
 
     if (selectWichCoinConvert == 'Bitcoin') {
       currentValueConvertedCoin =
-          Provider.of<StoreStateController>(context, listen: false)
+          Provider.of<StoreSharedStateControllers>(context, listen: false)
               .bitcoinCurrentValue;
     }
     if (selectWichCoinConvert == 'Ethereum') {
       currentValueConvertedCoin =
-          Provider.of<StoreStateController>(context, listen: false)
+          Provider.of<StoreSharedStateControllers>(context, listen: false)
               .ethereumCurrentValue;
     }
     if (selectWichCoinConvert == 'Litecoin') {
       currentValueConvertedCoin =
-          Provider.of<StoreStateController>(context, listen: false)
+          Provider.of<StoreSharedStateControllers>(context, listen: false)
               .litecoinCurrentValue;
     }
     if (selectToWichCoinConvert == 'Bitcoin') {
       currentValueConvertedToCoin =
-          Provider.of<StoreStateController>(context, listen: false)
+          Provider.of<StoreSharedStateControllers>(context, listen: false)
               .bitcoinCurrentValue;
     }
     if (selectToWichCoinConvert == 'Ethereum') {
       currentValueConvertedToCoin =
-          Provider.of<StoreStateController>(context, listen: false)
+          Provider.of<StoreSharedStateControllers>(context, listen: false)
               .ethereumCurrentValue;
     }
     if (selectToWichCoinConvert == 'Litecoin') {
       currentValueConvertedToCoin =
-          Provider.of<StoreStateController>(context, listen: false)
+          Provider.of<StoreSharedStateControllers>(context, listen: false)
               .litecoinCurrentValue;
     }
     resultAfterConversion =
@@ -91,7 +91,7 @@ class CoinsConversionState extends State<CoinsConversionWidget> {
   }
 
   Widget percetageToConvertCoin(double percentage) {
-    Provider.of<StoreStateController>(context, listen: false)
+    Provider.of<StoreSharedStateControllers>(context, listen: false)
         .pickWhichCoinConvert = selectWichCoinConvert;
 
     return Center(
@@ -100,23 +100,24 @@ class CoinsConversionState extends State<CoinsConversionWidget> {
             child: Material(
                 child: InkWell(
                     onTap: () {
-                      Provider.of<StoreStateController>(context, listen: false)
+                      Provider.of<StoreSharedStateControllers>(context,
+                              listen: false)
                           .percentageToConvert = percentage;
                       receiveCoinAmountAccordingToPercentage =
-                          Provider.of<StoreStateController>(context,
+                          Provider.of<StoreSharedStateControllers>(context,
                                   listen: false)
                               .coinAmountConversionAccordingToPercentage();
                       setState(() {
                         textToConversionField =
-                            Provider.of<StoreStateController>(context,
+                            Provider.of<StoreSharedStateControllers>(context,
                                     listen: false)
                                 .numberFormatConversion(
                                     receiveCoinAmountAccordingToPercentage);
                       });
-                      textToConvertedField = Provider.of<StoreStateController>(
-                              context,
-                              listen: false)
-                          .numberFormatConversion(convertCoin());
+                      textToConvertedField =
+                          Provider.of<StoreSharedStateControllers>(context,
+                                  listen: false)
+                              .numberFormatConversion(convertCoin());
                       percentageVar = percentage;
                     },
                     child: Container(
@@ -147,18 +148,18 @@ class CoinsConversionState extends State<CoinsConversionWidget> {
   refreshAmountAccordingToCoinItemSelection(String? newValue) {
     setState(() {
       selectWichCoinConvert = newValue!;
-      Provider.of<StoreStateController>(context, listen: false)
+      Provider.of<StoreSharedStateControllers>(context, listen: false)
           .percentageToConvert = percentageVar;
       receiveCoinAmountAccordingToPercentage =
-          Provider.of<StoreStateController>(context, listen: false)
+          Provider.of<StoreSharedStateControllers>(context, listen: false)
               .coinAmountConversionAccordingToPercentage();
       setState(() {
         textToConversionField =
-            Provider.of<StoreStateController>(context, listen: false)
+            Provider.of<StoreSharedStateControllers>(context, listen: false)
                 .numberFormatConversion(receiveCoinAmountAccordingToPercentage);
       });
       textToConvertedField =
-          Provider.of<StoreStateController>(context, listen: false)
+          Provider.of<StoreSharedStateControllers>(context, listen: false)
               .numberFormatConversion(convertCoin());
     });
   }
@@ -224,7 +225,8 @@ class CoinsConversionState extends State<CoinsConversionWidget> {
         padding: const EdgeInsets.fromLTRB(20, 30, 20, 30),
         child: Row(children: [
           Expanded(
-              child: Provider.of<StoreStateController>(context, listen: true)
+              child: Provider.of<StoreSharedStateControllers>(context,
+                      listen: true)
                   .elevatedButton(context, AppLocalizations.of(context)!.cancel,
                       backgroundButtonColor:
                           const Color.fromARGB(255, 255, 255, 255),
@@ -232,7 +234,8 @@ class CoinsConversionState extends State<CoinsConversionWidget> {
                       routeNavigator: '/')),
           const Spacer(),
           Expanded(
-              child: Provider.of<StoreStateController>(context, listen: true)
+              child: Provider.of<StoreSharedStateControllers>(context,
+                      listen: true)
                   .elevatedButton(
                       context, AppLocalizations.of(context)!.confirm,
                       routeNavigator: '/completedConversion')),
