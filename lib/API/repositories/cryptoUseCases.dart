@@ -16,14 +16,12 @@ class GetCryptoListingUseCase {
   GetCryptoListingUseCase({required this.repository});
 
   Future<AllAssetsBigDataModel> execute() async {
-    await Future.delayed(const Duration(seconds: 2));
     final response = await repository.recieveWalletPageData();
 
     return response;
   }
 
   Future<BigDataModel> start(String symbol) async {
-    await Future.delayed(const Duration(seconds: 2));
     final response = await repository.recieveDetailsPageData(symbol);
 
     return response;

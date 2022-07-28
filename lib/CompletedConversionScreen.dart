@@ -17,6 +17,7 @@ class CompletedConversionScreen extends StatelessWidget {
             radius: 30,
             backgroundColor: const Color.fromARGB(82, 98, 255, 0),
             child: IconButton(
+              tooltip: ("Go Back To WalletPage"),
               icon: const Icon(
                 Icons.check,
                 color: Colors.black,
